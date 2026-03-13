@@ -1,36 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Premium DryFruits</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
+*{margin:0;padding:0;box-sizing:border-box}
+
 body{
 font-family:Poppins;
-margin:0;
 background:#f4f7fc;
+color:#1f2f46;
 }
 
-header{
-background:linear-gradient(135deg,#5a2d0c,#a65c1c);
+.hero{
+background:linear-gradient(135deg,#0b1220,#7c3aed,#2563eb);
 color:white;
 text-align:center;
-padding:60px 20px;
+padding:80px 20px;
 }
 
-.products{
-padding:40px;
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+opacity:.9;
+}
+
+.ads{
+max-width:1100px;
+margin:30px auto;
+overflow:hidden;
+border-radius:15px;
+}
+
+.ads img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.section{
+padding:50px 20px;
+}
+
+.container{
 max-width:1100px;
 margin:auto;
 }
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
 }
 
@@ -38,31 +68,51 @@ gap:20px;
 background:white;
 border-radius:12px;
 padding:15px;
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
+box-shadow:0 10px 20px rgba(0,0,0,.08);
 text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
 }
 
 .card img{
-width:120px;
+width:100px;
+height:100px;
+object-fit:contain;
+margin-bottom:10px;
 }
 
 .price{
-color:green;
-font-weight:bold;
+color:#16a34a;
+font-weight:700;
+margin-top:5px;
 }
 
-.order{
+.bucket{
 background:#eef4ff;
 padding:30px;
-margin:40px;
-border-radius:10px;
-text-align:center;
+border-radius:15px;
+}
+
+.chk{
+display:block;
+margin:6px 0;
+}
+
+.total{
+font-size:22px;
+font-weight:700;
+margin:15px 0;
+color:#14532d;
 }
 
 input{
+width:90%;
+max-width:400px;
 padding:12px;
 margin:6px;
-width:250px;
 border-radius:6px;
 border:1px solid #ccc;
 }
@@ -71,57 +121,114 @@ button{
 background:#16a34a;
 color:white;
 border:none;
-padding:12px 30px;
-border-radius:20px;
+padding:12px 25px;
+border-radius:25px;
+font-weight:600;
 cursor:pointer;
-font-weight:bold;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#25D366;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+.whatsapp img{
+width:35px;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<header>
+<header class="hero">
+
 <h1>Premium DryFruits</h1>
-<p>Fresh & Healthy Dry Fruits Delivered at Home</p>
+
+<p>Fresh & Healthy Premium Quality Dry Fruits</p>
+
 </header>
 
 
-<section class="products">
+<div class="ads">
 
-<h2 style="text-align:center">Our Products</h2>
+<img id="adsImg" src="https://images.unsplash.com/photo-1606312619344-8d7c4d8e63b6">
+
+</div>
+
+
+<section class="section">
+
+<div class="container">
+
+<h2 style="text-align:center;margin-bottom:30px">Our Premium Dry Fruits</h2>
 
 <div class="grid">
 
-<div class="card">
-<img src="https://i.imgur.com/XQq0J7F.png">
-<h3>Almonds</h3>
-<p class="price">₹450 / 500g</p>
-</div>
+<script>
+
+const products=[
+
+{name:"Almonds",price:450,img:"https://img.icons8.com/color/96/almond.png"},
+{name:"Cashews",price:520,img:"https://img.icons8.com/color/96/cashew.png"},
+{name:"Pistachios",price:650,img:"https://img.icons8.com/color/96/pistachio.png"},
+{name:"Walnuts",price:480,img:"https://img.icons8.com/color/96/walnut.png"},
+{name:"Raisins",price:300,img:"https://img.icons8.com/color/96/raisins.png"},
+{name:"Black Raisins",price:350,img:"https://img.icons8.com/color/96/raisins.png"},
+{name:"Anjeer",price:700,img:"https://img.icons8.com/color/96/fig.png"},
+{name:"Dates",price:280,img:"https://img.icons8.com/color/96/dates.png"},
+{name:"Dry Apricot",price:600,img:"https://img.icons8.com/color/96/apricot.png"},
+{name:"Pine Nuts",price:900,img:"https://img.icons8.com/color/96/pine-nut.png"},
+{name:"Makhana",price:350,img:"https://img.icons8.com/color/96/popcorn.png"},
+{name:"Dry Coconut",price:250,img:"https://img.icons8.com/color/96/coconut.png"},
+{name:"Pecan Nuts",price:850,img:"https://img.icons8.com/color/96/walnut.png"},
+{name:"Hazelnuts",price:750,img:"https://img.icons8.com/color/96/hazelnut.png"},
+{name:"Mixed Dry Fruits",price:650,img:"https://img.icons8.com/color/96/mixed-nuts.png"}
+
+]
+
+let html=""
+
+products.forEach((p,i)=>{
+
+html+=`
 
 <div class="card">
-<img src="https://i.imgur.com/XQq0J7F.png">
-<h3>Cashews</h3>
-<p class="price">₹520 / 500g</p>
+
+<img src="${p.img}">
+
+<h3>${p.name}</h3>
+
+<div class="price">₹${p.price} / 500g</div>
+
+<label class="chk">
+
+<input type="checkbox" class="productChk" data-price="${p.price}" value="${p.name}">
+
+Add to Bucket
+
+</label>
+
 </div>
 
-<div class="card">
-<img src="https://i.imgur.com/XQq0J7F.png">
-<h3>Pistachios</h3>
-<p class="price">₹650 / 500g</p>
-</div>
+`
 
-<div class="card">
-<img src="https://i.imgur.com/XQq0J7F.png">
-<h3>Walnuts</h3>
-<p class="price">₹480 / 500g</p>
-</div>
+})
 
-<div class="card">
-<img src="https://i.imgur.com/XQq0J7F.png">
-<h3>Raisins</h3>
-<p class="price">₹300 / 500g</p>
+document.write(html)
+
+</script>
+
 </div>
 
 </div>
@@ -129,19 +236,127 @@ font-weight:bold;
 </section>
 
 
-<section class="order">
+<section class="section">
 
-<h2>Order Now (Cash On Delivery)</h2>
+<div class="container bucket">
 
-<input type="text" placeholder="Full Name"><br>
+<h2>Add to Bucket</h2>
 
-<input type="text" placeholder="Mobile Number"><br>
+<div id="bucketList"></div>
 
-<input type="text" placeholder="Full Address"><br>
+<div class="total" id="total">Total ₹0</div>
 
-<button>Place Order</button>
+<input id="name" placeholder="Full Name"><br>
+
+<input id="mobile" placeholder="Mobile Number"><br>
+
+<input id="address" placeholder="Full Address"><br>
+
+<button onclick="order()">Place Order (Cash on Delivery)</button>
+
+</div>
 
 </section>
+
+
+<a class="whatsapp" href="https://wa.me/919403030512">
+
+<img src="https://img.icons8.com/color/48/whatsapp.png">
+
+</a>
+
+
+<script>
+
+const checks=document.querySelectorAll(".productChk")
+
+const totalText=document.getElementById("total")
+
+function update(){
+
+let total=0
+
+checks.forEach(c=>{
+
+if(c.checked){
+
+total+=Number(c.dataset.price)
+
+}
+
+})
+
+totalText.innerText="Total ₹"+total
+
+}
+
+checks.forEach(c=>c.addEventListener("change",update))
+
+
+function order(){
+
+const name=document.getElementById("name").value
+
+const mobile=document.getElementById("mobile").value
+
+const address=document.getElementById("address").value
+
+let items=[]
+
+checks.forEach(c=>{
+
+if(c.checked)items.push(c.value)
+
+})
+
+if(items.length==0){
+
+alert("Select product")
+
+return
+
+}
+
+const msg=
+
+"New Dry Fruits Order%0A%0A"+
+
+"Name: "+name+"%0A"+
+
+"Mobile: "+mobile+"%0A"+
+
+"Address: "+address+"%0A%0A"+
+
+"Products: "+items.join(", ")
+
+window.open("https://wa.me/919403030512?text="+msg)
+
+}
+
+
+const ads=[
+
+"https://images.unsplash.com/photo-1615485290382-441e4d049cb5",
+
+"https://images.unsplash.com/photo-1606312619344-8d7c4d8e63b6",
+
+"https://images.unsplash.com/photo-1606787366850-de6330128bfc"
+
+]
+
+let i=0
+
+setInterval(()=>{
+
+i=(i+1)%ads.length
+
+document.getElementById("adsImg").src=ads[i]
+
+},3000)
+
+</script>
+
 
 </body>
+
 </html>
