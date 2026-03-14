@@ -159,13 +159,9 @@ width:35px;
 
 </header>
 
-
 <div class="ads">
-
 <img id="adsImg" src="https://images.unsplash.com/photo-1606312619344-8d7c4d8e63b6">
-
 </div>
-
 
 <section class="section">
 
@@ -173,7 +169,33 @@ width:35px;
 
 <h2 style="text-align:center;margin-bottom:30px">Our Premium Dry Fruits</h2>
 
-<div class="grid">
+<div class="grid" id="productGrid"></div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container bucket">
+
+<h2>Add to Bucket</h2>
+
+<div class="total" id="total">Total ₹0</div>
+
+<input id="name" placeholder="Full Name"><br>
+<input id="mobile" placeholder="Mobile Number"><br>
+<input id="address" placeholder="Full Address"><br>
+
+<button onclick="order()">Place Order (Cash on Delivery)</button>
+
+</div>
+
+</section>
+
+<a class="whatsapp" href="https://wa.me/919403030512">
+<img src="https://img.icons8.com/color/48/whatsapp.png">
+</a>
 
 <script>
 
@@ -197,11 +219,11 @@ const products=[
 
 ]
 
-let html=""
+const grid=document.getElementById("productGrid")
 
-products.forEach((p,i)=>{
+products.forEach(p=>{
 
-html+=`
+grid.innerHTML+=`
 
 <div class="card">
 
@@ -225,51 +247,7 @@ Add to Bucket
 
 })
 
-document.write(html)
-
-</script>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section">
-
-<div class="container bucket">
-
-<h2>Add to Bucket</h2>
-
-<div id="bucketList"></div>
-
-<div class="total" id="total">Total ₹0</div>
-
-<input id="name" placeholder="Full Name"><br>
-
-<input id="mobile" placeholder="Mobile Number"><br>
-
-<input id="address" placeholder="Full Address"><br>
-
-<button onclick="order()">Place Order (Cash on Delivery)</button>
-
-</div>
-
-</section>
-
-
-<a class="whatsapp" href="https://wa.me/919403030512">
-
-<img src="https://img.icons8.com/color/48/whatsapp.png">
-
-</a>
-
-
-<script>
-
 const checks=document.querySelectorAll(".productChk")
-
 const totalText=document.getElementById("total")
 
 function update(){
@@ -277,13 +255,7 @@ function update(){
 let total=0
 
 checks.forEach(c=>{
-
-if(c.checked){
-
-total+=Number(c.dataset.price)
-
-}
-
+if(c.checked) total+=Number(c.dataset.price)
 })
 
 totalText.innerText="Total ₹"+total
@@ -292,71 +264,30 @@ totalText.innerText="Total ₹"+total
 
 checks.forEach(c=>c.addEventListener("change",update))
 
-
 function order(){
 
 const name=document.getElementById("name").value
-
 const mobile=document.getElementById("mobile").value
-
 const address=document.getElementById("address").value
 
 let items=[]
 
 checks.forEach(c=>{
-
-if(c.checked)items.push(c.value)
-
+if(c.checked) items.push(c.value)
 })
 
-if(items.length==0){
-
-alert("Select product")
-
-return
-
-}
-
 const msg=
-
 "New Dry Fruits Order%0A%0A"+
-
 "Name: "+name+"%0A"+
-
 "Mobile: "+mobile+"%0A"+
-
 "Address: "+address+"%0A%0A"+
-
 "Products: "+items.join(", ")
 
 window.open("https://wa.me/919403030512?text="+msg)
 
 }
 
-
-const ads=[
-
-"https://images.unsplash.com/photo-1615485290382-441e4d049cb5",
-
-"https://images.unsplash.com/photo-1606312619344-8d7c4d8e63b6",
-
-"https://images.unsplash.com/photo-1606787366850-de6330128bfc"
-
-]
-
-let i=0
-
-setInterval(()=>{
-
-i=(i+1)%ads.length
-
-document.getElementById("adsImg").src=ads[i]
-
-},3000)
-
 </script>
 
-
 </body>
-
 </html>
